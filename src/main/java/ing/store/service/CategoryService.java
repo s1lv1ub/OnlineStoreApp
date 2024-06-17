@@ -1,15 +1,15 @@
 package ing.store.service;
 
-import ing.store.model.Category;
+import ing.store.dto.CategoryDTO;
 
 import java.util.List;
 
 public interface CategoryService {
-    List<Category> getAllCategories();
+    List<CategoryDTO> getAllCategories();
 
-    void createCategory(Category category);
+    CategoryDTO createCategory(CategoryDTO categoryDTO);
 
-    String deleteCategory(Long categoryId);
+    CategoryDTO deleteCategory(Long categoryId);
 
-    Category updateCategory(Category category,Long categoryId);
+    CategoryDTO updateCategory(CategoryDTO category, Long categoryId);
 }

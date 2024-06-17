@@ -1,6 +1,6 @@
 package ing.store.controller;
 
-import ing.store.model.Category;
+import ing.store.dto.CategoryDTO;
 import ing.store.service.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -21,31 +21,31 @@ public class CategoryController {
     }
 
     @GetMapping("/public/categories")
-    public ResponseEntity<List<Category>> getAllCategory() {
-        List<Category> allCategories = categoryService.getAllCategories();
+    public ResponseEntity<List<CategoryDTO>> getAllCategory() {
+        var allCategories = categoryService.getAllCategories();
         return ResponseEntity.status(HttpStatus.OK).body(allCategories);
     }
 
     @PostMapping("/public/categories")
-    public ResponseEntity<String> createCategory(@Valid @RequestBody Category category) {
-        categoryService.createCategory(category);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Category created successfully");
+    public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
+        var savedCategoryDTO = categoryService.createCategory(categoryDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedCategoryDTO);
     }
 
     @DeleteMapping("/admin/categries/{categoryId}")
-    public ResponseEntity<String> deleteCategory(@PathVariable Long categoryId) {
+    public ResponseEntity<CategoryDTO> deleteCategory(@PathVariable Long categoryId) {
 
-        String status = categoryService.deleteCategory(categoryId);
-        return ResponseEntity.status(HttpStatus.OK).body(status);
+        var deleteCategory = categoryService.deleteCategory(categoryId);
+        return ResponseEntity.status(HttpStatus.OK).body(deleteCategory);
 
     }
 
-    @PutMapping("/public/categories/{categoreyId}")
-    public ResponseEntity<String> updateCategory(@Valid @RequestBody Category category,
-                                                 @PathVariable Long categoreyId) {
+    @PutMapping("/public/categories/{categoryId}")
+    public ResponseEntity<CategoryDTO> updateCategory(@Valid @RequestBody CategoryDTO categoryDTO,
+                                                      @PathVariable Long categoryId) {
 
-        Category savedCategory = categoryService.updateCategory(category, categoreyId);
-        return ResponseEntity.status(HttpStatus.OK).body(savedCategory.getCategoryName() + " with id " + categoreyId + " updated successfully");
+        var savedCategoryDTO = categoryService.updateCategory(categoryDTO, categoryId);
+        return ResponseEntity.status(HttpStatus.OK).body(savedCategoryDTO);
 
     }
 }
