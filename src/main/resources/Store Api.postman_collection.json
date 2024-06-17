@@ -10,7 +10,38 @@
 			"name": "Get All Categories",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/public/categories?pageNumber=0&pageSize=21&sortBy=categoryName&sortOrder=desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"public",
+						"categories"
+					],
+					"query": [
+						{
+							"key": "pageNumber",
+							"value": "0"
+						},
+						{
+							"key": "pageSize",
+							"value": "21"
+						},
+						{
+							"key": "sortBy",
+							"value": "categoryName"
+						},
+						{
+							"key": "sortOrder",
+							"value": "desc"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -29,7 +60,7 @@
 					"path": [
 						"api",
 						"admin",
-						"categries",
+						"categories",
 						"1"
 					]
 				}

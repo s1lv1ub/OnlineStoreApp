@@ -1,11 +1,10 @@
 package ing.store.service;
 
 import ing.store.dto.CategoryDTO;
-
-import java.util.List;
+import ing.store.dto.CategoryResponse;
 
 public interface CategoryService {
-    List<CategoryDTO> getAllCategories();
+    CategoryResponse getAllCategories(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder);
 
     CategoryDTO createCategory(CategoryDTO categoryDTO);
 

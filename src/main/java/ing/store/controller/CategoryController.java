@@ -1,13 +1,13 @@
 package ing.store.controller;
 
+import ing.store.config.AppConstants;
 import ing.store.dto.CategoryDTO;
+import ing.store.dto.CategoryResponse;
 import ing.store.service.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -21,8 +21,12 @@ public class CategoryController {
     }
 
     @GetMapping("/public/categories")
-    public ResponseEntity<List<CategoryDTO>> getAllCategory() {
-        var allCategories = categoryService.getAllCategories();
+    public ResponseEntity<CategoryResponse> getAllCategory(
+            @RequestParam(name="pageNumber", defaultValue = AppConstants.PAGE_NUMBER,required = false) Integer pageNumber,
+            @RequestParam(name = "pageSize",defaultValue = AppConstants.PAGE_SIZE,required = false) Integer pageSize,
+            @RequestParam(name="sortBy", defaultValue = AppConstants.SORT_CATEGORIES_BY,required = false) String sortBy,
+            @RequestParam(name="sortOrder",defaultValue = AppConstants.SORT_DIRECTION,required = false) String sortOrder) {
+        var allCategories = categoryService.getAllCategories(pageNumber, pageSize,sortBy,sortOrder);
         return ResponseEntity.status(HttpStatus.OK).body(allCategories);
     }
 
