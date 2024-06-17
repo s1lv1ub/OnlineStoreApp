@@ -1,5 +1,6 @@
 package ing.store.exceptions;
 
+import ing.store.dto.APIResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -25,12 +26,14 @@ public class MyGlobalExceptionHandler {
     }
 
     @ExceptionHandler({ResourceNotFoundException.class})
-    public ResponseEntity<String> myResoureceNotFoundException(ResourceNotFoundException e){
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    public ResponseEntity<APIResponse> myResoureceNotFoundException(ResourceNotFoundException e){
+        APIResponse apiResponse = new APIResponse(e.getMessage(),false);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiResponse);
     }
 
     @ExceptionHandler({APIException.class})
-    public ResponseEntity<String> myAPIException(APIException e){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    public ResponseEntity<APIResponse> myAPIException(APIException e){
+        APIResponse apiResponse = new APIResponse(e.getMessage(),false);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiResponse);
     }
 }
