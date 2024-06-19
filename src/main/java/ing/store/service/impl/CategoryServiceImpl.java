@@ -1,4 +1,4 @@
-package ing.store.service;
+package ing.store.service.impl;
 
 import ing.store.dto.CategoryDTO;
 import ing.store.exceptions.APIException;
@@ -6,6 +6,7 @@ import ing.store.exceptions.ResourceNotFoundException;
 import ing.store.model.Category;
 import ing.store.repositories.CategoryRepository;
 import ing.store.dto.CategoryResponse;
+import ing.store.service.CategoryService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
